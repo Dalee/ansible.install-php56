@@ -13,16 +13,16 @@
 - name: php - add repository (Debian)
   apt_repository:
     repo: "{{ item }}"
-    state: present
+    state: "present"
     update_cache: yes
   with_items:
     - "deb http://packages.dotdeb.org {{ ansible_lsb.codename }} all"
     - "deb-src http://packages.dotdeb.org {{ ansible_lsb.codename }} all"
   when: ansible_distribution == "Debian"
 
-- name: php5.6 - add repository (Ubuntu)
+- name: php - add repository (Ubuntu)
   apt_repository:
-    repo: "ppa:ondrej/php5-5.6"
+    repo: "ppa:ondrej/php"
     state: "present"
     update_cache: yes
   when: ansible_distribution == "Ubuntu"
@@ -30,17 +30,17 @@
 - name: php - install packages
   apt:
     name: "{{ item }}"
-    state: present
+    state: "present"
   with_items:
-      - "php5-common"
-      - "php5-cli"
-      - "php5-fpm"
-      - "php5-pgsql"
-      - "php5-mysql"
-      - "php5-gd"
-      - "php5-json"
-      - "php5-curl"
-      - "php5-intl"
-      - "php5-mcrypt"
-      - "php5-memcached"
-      - "php5-xdebug"
+      - "php5.6-common"
+      - "php5.6-cli"
+      - "php5.6-fpm"
+      - "php5.6-pgsql"
+      - "php5.6-mysql"
+      - "php5.6-gd"
+      - "php5.6-json"
+      - "php5.6-curl"
+      - "php5.6-intl"
+      - "php5.6-mcrypt"
+      - "php5.6-memcached"
+      - "php5.6-xdebug"
