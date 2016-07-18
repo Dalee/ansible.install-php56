@@ -4,4 +4,4 @@
 #
 
 COMPOSER_PHAR="{{ composer_path }}"
-$(which php) -n -d extension=json.so $COMPOSER_PHAR "$@"
+$(which php) -n -d extension=phar.so -d extension=json.so $COMPOSER_PHAR "$@"
