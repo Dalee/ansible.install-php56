@@ -1,0 +1,43 @@
+#
+# Install composer and update it to latest version
+# (also including xdebug-workaround script, to run composer without xdebug enabled)
+#
+- name: composer - set target path
+  set_fact:
+    composer_path: "/usr/local/bin/composer.phar"
+    composer_script: "/usr/local/bin/composer"
+
+- name: composer - check installed
+  stat:
+    path: "{{ composer_path }}"
+  register: composer_bin
+
+- name: composer - downloading installer
+  get_url:
+    url: "https://getcomposer.org/installer"
+    dest: "/tmp/composer-installer.php"
+    mode: 0755
+  when: not composer_bin.stat.exists
+
+- name: composer - run installer
+  shell: "php composer-installer.php"
+  args:
+    chdir: "/tmp"
+  when: not composer_bin.stat.exists
+
+- name: composer - move binary to target path
+  shell: "mv /tmp/composer.phar {{ composer_path }}"
+  args:
+    creates: "{{ composer_path }}"
+  when: not composer_bin.stat.exists
+
+- name: composer - set xdebug workaround script
+  template:
+    src: "composer.sh.j2"
+    dest: "{{ composer_script }}"
+    mode: 0755
+    owner: root
+    group: root
+
+- name: composer - update (forced)
+  shell: "php {{ composer_path }} self-update -q"

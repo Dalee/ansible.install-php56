@@ -1,0 +1,16 @@
+galaxy_info:
+  author: "Dalee Dev"
+  company: Dalee
+  license: BSD
+  description: "PHP 5.6 and Composer"
+  min_ansible_version: 1.4
+  platforms:
+   - name: Debian
+     versions:
+      - jessie
+   - name: Ubuntu
+     versions:
+      - trusty
+  categories:
+   - system
+dependencies: []

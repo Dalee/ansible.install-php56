@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#
+# {{ ansible_managed }}
+#
+
+COMPOSER_PHAR="{{ composer_path }}"
+$(which php) -n -d extension=json.so $COMPOSER_PHAR "$@"
