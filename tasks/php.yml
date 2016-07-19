@@ -1,10 +1,7 @@
 #
-# PHP 5.6 installation, Debian/Ubuntu
+# debian @see http://www.dotdeb.org/
+# ubuntu @see https://launchpad.net/~ondrej/+archive/ubuntu/php
 #
-# for Debian: Dotdeb Repository (http://www.dotdeb.org/)
-# for Ubuntu: Ondrej Sury PPA (https://launchpad.net/~ondrej/+archive/ubuntu/php5-5.6)
-#
-
 - name: php - add repository key (Debian)
   apt_key:
     url: "http://www.dotdeb.org/dotdeb.gpg"
@@ -20,14 +17,7 @@
     - "deb-src http://packages.dotdeb.org {{ ansible_lsb.codename }} all"
   when: ansible_distribution == "Debian"
 
-- name: php - add repository (Ubuntu)
-  apt_repository:
-    repo: "ppa:ondrej/php"
-    state: "present"
-    update_cache: yes
-  when: ansible_distribution == "Ubuntu"
-
-- name: php - install packages
+- name: php - install packages (Debian)
   apt:
     name: "{{ item }}"
     state: "present"
@@ -44,3 +34,31 @@
       - "php5-mcrypt"
       - "php5-memcached"
       - "php5-xdebug"
+  when: ansible_distribution == "Debian"
+
+# ubuntu
+- name: php - add repository (Ubuntu)
+  apt_repository:
+    repo: "ppa:ondrej/php"
+    state: "present"
+    update_cache: yes
+  when: ansible_distribution == "Ubuntu"
+
+- name: php - install packages (Ubuntu)
+  apt:
+    name: "{{ item }}"
+    state: "present"
+  with_items:
+      - "php5.6-common"
+      - "php5.6-cli"
+      - "php5.6-fpm"
+      - "php5.6-pgsql"
+      - "php5.6-mysql"
+      - "php5.6-gd"
+      - "php5.6-json"
+      - "php5.6-curl"
+      - "php5.6-intl"
+      - "php5.6-mcrypt"
+      - "php5.6-memcached"
+      - "php5.6-xdebug"
+  when: ansible_distribution == "Ubuntu"

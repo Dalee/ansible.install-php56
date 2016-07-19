@@ -1,0 +1,35 @@
+;
+; FPM PHP Settings
+;
+engine = On
+date.timezone = 'Europe/Moscow'
+memory_limit = -1
+
+; error settings
+display_errors = On
+display_startup_errors = On
+error_reporting = E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED
+log_errors = On
+ignore_repeated_errors = Off
+log_errors_max_len = 1024
+html_errors = On
+error_log = syslog
+
+; other stuff
+variables_order = "GPCS"
+register_argc_argv = Off
+auto_globals_jit = On
+enable_dl = Off
+max_execution_time = 30
+
+default_mimetype = "text/html"
+default_charset = "UTF-8"
+
+file_uploads = On
+upload_max_filesize = 1024M
+max_file_uploads = 100
+post_max_size = 1024M
+
+allow_url_fopen = On
+allow_url_include = Off
+default_socket_timeout = 5

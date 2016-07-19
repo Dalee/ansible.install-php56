@@ -1,0 +1,4 @@
+composer:
+  release: "https://getcomposer.org/installer"
+  target_path: "/usr/local/bin/composer.phar"
+  wrapper_path: "/usr/local/bin/composer"

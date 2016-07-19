@@ -3,5 +3,7 @@
 # {{ ansible_managed }}
 #
 
-COMPOSER_PHAR="{{ composer_path }}"
-$(which php) -n -d extension=phar.so -d extension=json.so $COMPOSER_PHAR "$@"
+COMPOSER_PHAR="{{ composer.target_path }}"
+sudo $(which {{ phpdismod }}) -s cli xdebug
+$(which {{ php }}) $COMPOSER_PHAR "$@"
+sudo $(which {{ phpenmod }}) -s cli xdebug

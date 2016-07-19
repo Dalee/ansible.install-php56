@@ -1,3 +1,23 @@
 #
+- name: php - ubuntu binary name
+  set_fact:
+    php_etc: "/etc/php/5.6"
+    php: php5.6
+    php_fpm: php5.6-fpm
+    phpenmod: phpenmod
+    phpdismod: phpdismod
+  when: ansible_distribution == "Ubuntu"
+
+- name: php - ubuntu binary name
+  set_fact:
+    php_etc: "/etc/php5"
+    php: php
+    php_fpm: php5-fpm
+    phpenmod: php5enmod
+    phpdismod: php5dismod
+  when: ansible_distribution == "Debian"
+
 - include: php.yml
 - include: composer.yml
+- include: options.yml
+- include: xdebug.yml
