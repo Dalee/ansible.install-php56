@@ -2,7 +2,7 @@
 - name: php - set xdebug config
   template:
     src: "20-xdebug.ini.j2"
-    dest: "{{ php_etc }}/cli/conf.d/20-xdebug.ini"
+    dest: "{{ Dalee_install_php__php_etc }}/cli/conf.d/20-xdebug.ini"
     mode: 0644
     owner: "root"
     group: "root"

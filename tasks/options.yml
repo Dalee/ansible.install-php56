@@ -2,7 +2,7 @@
 - name: php - set default cli config
   template:
     src: "php-cli.ini.j2"
-    dest: "{{ php_etc }}/cli/php.ini"
+    dest: "{{ Dalee_install_php__php_etc }}/cli/php.ini"
     mode: 0644
     owner: "root"
     group: "root"
@@ -10,7 +10,7 @@
 - name: php - set default fpm config
   template:
     src: "php-fpm.ini.j2"
-    dest: "{{ php_etc }}/fpm/php.ini"
+    dest: "{{ Dalee_install_php__php_etc }}/fpm/php.ini"
     mode: 0644
     owner: "root"
     group: "root"
@@ -18,13 +18,13 @@
 - name: php - set default pool config
   template:
     src: "php-www.cfg.j2"
-    dest: "{{ php_etc }}/fpm/pool.d/www.conf"
+    dest: "{{ Dalee_install_php__php_etc }}/fpm/pool.d/www.conf"
     mode: 0644
     owner: "root"
     group: "root"
 
 - name: php - forced restart
   service:
-    name: "{{ php_fpm }}"
+    name: "{{ Dalee_install_php__php_fpm }}"
     enabled: "yes"
     state: "restarted"

@@ -1,20 +1,20 @@
 #
-- name: php - ubuntu binary name
+- name: php - Ubuntu facts
   set_fact:
-    php_etc: "/etc/php/5.6"
-    php: php5.6
-    php_fpm: php5.6-fpm
-    phpenmod: phpenmod
-    phpdismod: phpdismod
+    Dalee_install_php__php_etc: "/etc/php/5.6"
+    Dalee_install_php__php: php5.6
+    Dalee_install_php__php_fpm: php5.6-fpm
+    Dalee_install_php__phpenmod: phpenmod
+    Dalee_install_php__phpdismod: phpdismod
   when: ansible_distribution == "Ubuntu"
 
-- name: php - ubuntu binary name
+- name: php - Debian facts
   set_fact:
-    php_etc: "/etc/php5"
-    php: php
-    php_fpm: php5-fpm
-    phpenmod: php5enmod
-    phpdismod: php5dismod
+    Dalee_install_php__php_etc: "/etc/php5"
+    Dalee_install_php__php: php
+    Dalee_install_php__php_fpm: php5-fpm
+    Dalee_install_php__phpenmod: php5enmod
+    Dalee_install_php__phpdismod: php5dismod
   when: ansible_distribution == "Debian"
 
 - include: php.yml
