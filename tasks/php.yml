@@ -34,6 +34,7 @@
       - "php5-mcrypt"
       - "php5-memcached"
       - "php5-xdebug"
+      - "php5-bcmath"
   when: ansible_distribution == "Debian"
 
 # ubuntu
@@ -63,4 +64,5 @@
       - "php5.6-mcrypt"
       - "php5.6-memcached"
       - "php5.6-xdebug"
+      - "php5.6-bcmath"
   when: ansible_distribution == "Ubuntu"
