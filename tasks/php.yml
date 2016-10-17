@@ -1,51 +1,11 @@
 #
-# debian @see http://www.dotdeb.org/
-# ubuntu @see https://launchpad.net/~ondrej/+archive/ubuntu/php
-#
-- name: php - add repository key (Debian)
-  apt_key:
-    url: "http://www.dotdeb.org/dotdeb.gpg"
-  when: ansible_distribution == "Debian"
-
-- name: php - add repository (Debian)
-  apt_repository:
-    repo: "{{ item }}"
-    state: "present"
-    update_cache: yes
-  with_items:
-    - "deb http://packages.dotdeb.org {{ ansible_lsb.codename }} all"
-    - "deb-src http://packages.dotdeb.org {{ ansible_lsb.codename }} all"
-  when: ansible_distribution == "Debian"
-
-- name: php - install packages (Debian)
-  apt:
-    name: "{{ item }}"
-    state: "present"
-  with_items:
-      - "php5-common"
-      - "php5-cli"
-      - "php5-fpm"
-      - "php5-pgsql"
-      - "php5-mysql"
-      - "php5-gd"
-      - "php5-json"
-      - "php5-curl"
-      - "php5-intl"
-      - "php5-mcrypt"
-      - "php5-memcached"
-      - "php5-xdebug"
-      - "php5-bcmath"
-  when: ansible_distribution == "Debian"
-
-# ubuntu
-- name: php - add repository (Ubuntu)
+- name: php - add repository
   apt_repository:
     repo: "ppa:ondrej/php"
     state: "present"
     update_cache: yes
-  when: ansible_distribution == "Ubuntu"
 
-- name: php - install packages (Ubuntu)
+- name: php - install packages
   apt:
     name: "{{ item }}"
     state: "present"
@@ -65,4 +25,3 @@
       - "php5.6-memcached"
       - "php5.6-xdebug"
       - "php5.6-bcmath"
-  when: ansible_distribution == "Ubuntu"

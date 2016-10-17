@@ -5,9 +5,6 @@ galaxy_info:
   description: "PHP 5.6 and Composer"
   min_ansible_version: 1.4
   platforms:
-   - name: Debian
-     versions:
-      - jessie
    - name: Ubuntu
      versions:
       - trusty

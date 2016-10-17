@@ -6,16 +6,6 @@
     Dalee_install_php__php_fpm: php5.6-fpm
     Dalee_install_php__phpenmod: phpenmod
     Dalee_install_php__phpdismod: phpdismod
-  when: ansible_distribution == "Ubuntu"
-
-- name: php - Debian facts
-  set_fact:
-    Dalee_install_php__php_etc: "/etc/php5"
-    Dalee_install_php__php: php
-    Dalee_install_php__php_fpm: php5-fpm
-    Dalee_install_php__phpenmod: php5enmod
-    Dalee_install_php__phpdismod: php5dismod
-  when: ansible_distribution == "Debian"
 
 - include: php.yml
 - include: composer.yml
