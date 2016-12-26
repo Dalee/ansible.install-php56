@@ -25,3 +25,4 @@
       - "php5.6-memcached"
       - "php5.6-xdebug"
       - "php5.6-bcmath"
+      - "php5.6-soap"
