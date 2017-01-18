@@ -2,10 +2,11 @@
 #
 # {{ ansible_managed }}
 #
+SUDO=$(which sudo)
 
 COMPOSER_PHAR="{{ composer.target_path }}"
-sudo $(which {{ Dalee_install_php__phpdismod }}) -s cli xdebug
+$SUDO $(which {{ Dalee_install_php__phpdismod }}) -s cli xdebug
 $(which {{ Dalee_install_php__php }}) $COMPOSER_PHAR "$@"
 CODE=$?
-sudo $(which {{ Dalee_install_php__phpenmod }}) -s cli xdebug
+$SUDO $(which {{ Dalee_install_php__phpenmod }}) -s cli xdebug
 exit ${CODE}
