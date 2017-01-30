@@ -1,7 +1,4 @@
 #
-# Install composer and update it to latest version
-# (also including xdebug-workaround script, to run composer without xdebug enabled)
-#
 - name: composer - check it's already installed
   stat:
     path: "{{ composer.target_path }}"
@@ -26,13 +23,21 @@
     creates: "{{ composer.target_path }}"
   when: not composer_phar.stat.exists
 
-- name: composer - set xdebug workaround script
+- name: composer - set xdebug workaround script (xdebug is requested)
   template:
     src: "composer.sh.j2"
     dest: "{{ composer.wrapper_path }}"
     mode: 0755
     owner: "root"
     group: "root"
+  when: "{{ php_enable_xdebug|default(False) }}"
 
-- name: composer - force update
+- name: composer - set symlink to original composer (xdebug is absent)
+  file:
+    src: "{{ composer.target_path }}"
+    dest: "{{ composer.wrapper_path }}"
+    state: "link"
+  when: "not {{ php_enable_xdebug|default(False) }}"
+
+- name: composer - update (forced)
   shell: "php {{ composer.target_path }} self-update -q"

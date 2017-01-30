@@ -4,19 +4,36 @@
 engine = On
 date.timezone = 'Europe/Moscow'
 memory_limit = -1
+expose_php = off
 
-; error settings
+{% if php_enable_xdebug|default(False) %}
+;
+; development error settings
+;
 display_errors = On
 display_startup_errors = On
-error_reporting = E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED
 log_errors = On
+html_errors = On
+error_reporting = E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED
 ignore_repeated_errors = Off
 log_errors_max_len = 1024
-html_errors = Off
 error_log = syslog
+{% else %}
+;
+; production settings
+;
+display_errors = Off
+display_startup_errors = Off
+log_errors = On
+html_errors = Off
+error_reporting = E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED
+ignore_repeated_errors = On
+log_errors_max_len = 1024
+error_log = syslog
+{% endif %}
 
 ; other stuff
-variables_order = "GPCS"
+variables_order = "EGPCS"
 register_argc_argv = Off
 auto_globals_jit = On
 enable_dl = Off

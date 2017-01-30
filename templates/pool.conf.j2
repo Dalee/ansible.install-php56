@@ -1,7 +1,7 @@
 [www]
 ; process owner
-user = vagrant
-group = vagrant
+user = {{ php_user|default(vagrant) }}
+group = {{ php_group|default(vagrant) }}
 
 ; socket owner
 listen = /var/run/php5-fpm.sock
@@ -12,10 +12,13 @@ listen.backlog = -1
 ; server settings
 pm = dynamic
 pm.start_servers = 2
-pm.max_children = 5
-pm.min_spare_servers = 1
-pm.max_spare_servers = 3
-pm.max_requests = 100
+pm.max_children = 10
+pm.min_spare_servers = 2
+pm.max_spare_servers = 4
+pm.max_requests = 500
+
+; env
+clear_env = no
 
 ; proxima related things
 rlimit_files = 1024

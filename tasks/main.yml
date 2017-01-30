@@ -1,12 +1,4 @@
 #
-- name: php - Ubuntu facts
-  set_fact:
-    Dalee_install_php__php_etc: "/etc/php/5.6"
-    Dalee_install_php__php: php5.6
-    Dalee_install_php__php_fpm: php5.6-fpm
-    Dalee_install_php__phpenmod: phpenmod
-    Dalee_install_php__phpdismod: phpdismod
-
 - include: php.yml
 - include: composer.yml
 - include: options.yml

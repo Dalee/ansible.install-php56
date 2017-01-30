@@ -1,8 +1,17 @@
 #
+- name: php - install xdebug support
+  apt:
+    name: "{{ item }}"
+    state: "present"
+  with_items:
+    - "php5.6-xdebug"
+  when: "{{ php_enable_xdebug|default(False) }}"
+
 - name: php - set xdebug config
   template:
-    src: "20-xdebug.ini.j2"
-    dest: "{{ Dalee_install_php__php_etc }}/cli/conf.d/20-xdebug.ini"
+    src: "xdebug.ini.j2"
+    dest: "/etc/php/5.6/cli/conf.d/20-xdebug.ini"
     mode: 0644
     owner: "root"
     group: "root"
+  when: "{{ php_enable_xdebug|default(False) }}"

@@ -1,0 +1,18 @@
+; include www pool
+include=/etc/php/5.6/fpm/pool.d/*.conf
+
+[global]
+pid = /run/php/php5.6-fpm.pid
+error_log = /var/log/php5.6-error.log
+
+emergency_restart_threshold = 0
+emergency_restart_interval = 0
+process_control_timeout = 0
+
+process.max = 16
+events.mechanism = epoll
+
+; production
+{% if not php_enable_xdebug|default(False) %}
+systemd_interval = 0
+{% endif %}
