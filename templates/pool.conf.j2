@@ -1,7 +1,7 @@
 [www]
 ; process owner
-user = {{ php_user|default(vagrant) }}
-group = {{ php_group|default(vagrant) }}
+user = {{ php_user|default('vagrant') }}
+group = {{ php_group|default('vagrant') }}
 
 ; socket owner
 listen = /var/run/php5-fpm.sock
