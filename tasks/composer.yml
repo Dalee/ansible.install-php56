@@ -30,14 +30,14 @@
     mode: 0755
     owner: "root"
     group: "root"
-  when: "{{ php_enable_xdebug|default(False) }}"
+  when: "php_enable_xdebug|default(False)"
 
 - name: composer - set symlink to original composer (xdebug is absent)
   file:
     src: "{{ composer.target_path }}"
     dest: "{{ composer.wrapper_path }}"
     state: "link"
-  when: "not {{ php_enable_xdebug|default(False) }}"
+  when: "not php_enable_xdebug|default(False)"
 
 - name: composer - update (forced)
   shell: "php {{ composer.target_path }} self-update -q"

@@ -5,7 +5,7 @@
     state: "present"
   with_items:
     - "php5.6-xdebug"
-  when: "{{ php_enable_xdebug|default(False) }}"
+  when: "php_enable_xdebug|default(False)"
 
 - name: php - set xdebug config
   template:
@@ -14,4 +14,4 @@
     mode: 0644
     owner: "root"
     group: "root"
-  when: "{{ php_enable_xdebug|default(False) }}"
+  when: "php_enable_xdebug|default(False)"
