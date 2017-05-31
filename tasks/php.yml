@@ -15,6 +15,7 @@
       - "php5.6-cli"
       - "php5.6-fpm"
       - "php5.6-pgsql"
+      - "php5.6-mysql"
       - "php5.6-gd"
       - "php5.6-bz2"
       - "php5.6-zip"
