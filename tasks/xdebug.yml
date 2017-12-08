@@ -10,8 +10,11 @@
 - name: php - set xdebug config
   template:
     src: "xdebug.ini.j2"
-    dest: "/etc/php/5.6/cli/conf.d/20-xdebug.ini"
+    dest: "{{ item }}"
     mode: 0644
     owner: "root"
     group: "root"
+  with_items:
+    - "/etc/php/5.6/cli/conf.d/20-xdebug.ini"
+    - "/etc/php/5.6/fpm/conf.d/20-xdebug.ini"
   when: "php_enable_xdebug|default(False)"
